@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "202568177",
+    "project_id": "trucker-app-dev",
+    "storage_bucket": "trucker-app-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202568177:android:a9cb2b7a4178b1e3131450",
+        "android_client_info": {
+          "package_name": "com.abulnes.trucker_app.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202568177-kvbksp7mmh0s7u863krbcp4c10j5sjv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM9K0ntDecwsKFWbEjK9lOyFSO2QvJM8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202568177-kvbksp7mmh0s7u863krbcp4c10j5sjv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202568177:android:778065682d6350d7131450",
+        "android_client_info": {
+          "package_name": "com.abulnes.trucker_app.qa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202568177-kvbksp7mmh0s7u863krbcp4c10j5sjv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM9K0ntDecwsKFWbEjK9lOyFSO2QvJM8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202568177-kvbksp7mmh0s7u863krbcp4c10j5sjv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
