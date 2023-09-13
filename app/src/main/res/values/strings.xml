@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">trucker-app</string>
+
+    <!--Common strings-->
+    <string name="or">or</string>
+
+    <!-- ################### Auth Strings #######################-->
+
+    <!--Welcome Screen -->
+    <string name="welcome_to_trucker_app">Welcome to TruckerHub </string>
+    <string name="accessibility_google_logo">Sign in with Google</string>
+    <string name="accessibility_welcome_img">Welcome Illustration</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="sign_in_with_password">Sign in with password</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <!-- ########################################################-->
 </resources>
