@@ -1,4 +1,4 @@
-package com.abulnes.trucker_app.ui.components
+package com.abulnes.trucker_app.ui.components.atoms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
