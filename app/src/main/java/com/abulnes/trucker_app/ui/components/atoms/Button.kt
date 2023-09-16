@@ -58,7 +58,7 @@ fun MainButton(
 
     val buttonModifier = modifier
         .fillMaxWidth(1f)
-        .padding(horizontal = 12.dp, vertical = 8.dp)
+        .padding(horizontal = 24.dp, vertical = 8.dp)
 
     when (type) {
         ButtonTypes.PRIMARY -> {

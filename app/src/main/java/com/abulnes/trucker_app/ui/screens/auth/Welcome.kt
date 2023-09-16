@@ -24,6 +24,7 @@ import com.abulnes.trucker_app.R
 import com.abulnes.trucker_app.ui.components.atoms.ButtonTypes
 import com.abulnes.trucker_app.ui.components.atoms.MainButton
 import com.abulnes.trucker_app.ui.components.atoms.Screen
+import com.abulnes.trucker_app.ui.components.molecules.SpacerText
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 @Composable
@@ -68,24 +69,14 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
                 )
 
             }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Divider(modifier = Modifier.fillMaxWidth(0.4f))
-                Text(
-                    text = stringResource(id = R.string.or),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(0.2f)
-                )
-                Divider(modifier = Modifier.fillMaxWidth(0.8f))
-
-            }
+            SpacerText(text = R.string.or, fraction = 0.4f)
             MainButton(onClick = { /*TODO*/ }, text = R.string.sign_in_with_password)
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = stringResource(id = R.string.dont_have_account))
+                Text(
+                    text = stringResource(id = R.string.dont_have_account),
+                    color = MaterialTheme.colorScheme.outline
+                )
                 MainButton(
                     onClick = { /*TODO*/ },
                     type = ButtonTypes.PRIMARY_TEXT,
