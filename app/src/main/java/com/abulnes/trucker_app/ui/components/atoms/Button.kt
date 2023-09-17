@@ -15,10 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abulnes.trucker_app.R
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
+import com.abulnes.trucker_app.ui.theme.urbanistFontFamily
 
 enum class ButtonTypes {
     PRIMARY, OUTLINE, SECONDARY, PRIMARY_TEXT
@@ -34,7 +36,9 @@ fun ButtonContent(
     if (text != null) {
         Text(
             text = stringResource(id = text),
-            modifier = contentModifier
+            modifier = contentModifier,
+            fontFamily = urbanistFontFamily,
+            fontWeight = FontWeight.Bold
         )
     }
 
