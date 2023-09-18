@@ -3,7 +3,7 @@
 
     <!--Common strings-->
     <string name="or">or</string>
-
+    <string name="continue_button">Continue</string>
     <!-- ################### Auth Strings #######################-->
 
     <!--Welcome Screen -->
@@ -27,5 +27,12 @@
     <!--Sign In Screen -->
     <string name="login_to_your_account">Login to Your Account</string>
     <string name="forgot_password">Forgot the password?</string>
+
+
+    <!--Forgot Password-->
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="select_recovery_method">Select which contact details should we use to reset your password</string>
+    <string name="via_email">via Email:</string>
+    <string name="accessibility_forgot_password">Recover your password</string>
     <!-- ########################################################-->
 </resources>
