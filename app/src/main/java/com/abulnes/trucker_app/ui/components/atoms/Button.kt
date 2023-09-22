@@ -52,12 +52,12 @@ fun ButtonContent(
 
 @Composable
 fun MainButton(
-    onClick: () -> Unit,
+    onClick: ()-> Unit,
     modifier: Modifier = Modifier,
     type: ButtonTypes = ButtonTypes.PRIMARY,
     @StringRes text: Int? = null,
     textModifier: Modifier = Modifier,
-    content: (@Composable () -> Unit)? = null
+    content: @Composable() (() -> Unit)? = null
 ) {
 
     val buttonModifier = modifier
@@ -108,7 +108,7 @@ fun MainButton(
 @Composable
 fun PrimaryButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = { /*TODO*/ }, text = R.string.sign_up)
+        MainButton(onClick = {}, text = R.string.sign_up)
     }
 }
 
@@ -116,7 +116,7 @@ fun PrimaryButtonPreview() {
 @Composable
 fun SecondaryButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = { /*TODO*/ }, type = ButtonTypes.SECONDARY, text = R.string.sign_up)
+        MainButton(onClick = {},type = ButtonTypes.SECONDARY, text = R.string.sign_up)
     }
 }
 
@@ -124,7 +124,7 @@ fun SecondaryButtonPreview() {
 @Composable
 fun OutlineButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = { /*TODO*/ }, type = ButtonTypes.OUTLINE, text = R.string.sign_up)
+        MainButton(onClick = {},type = ButtonTypes.OUTLINE, text = R.string.sign_up)
     }
 }
 
@@ -132,6 +132,6 @@ fun OutlineButtonPreview() {
 @Composable
 fun PrimaryTextButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = { /*TODO*/ }, type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up)
+        MainButton(onClick = {},type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up)
     }
 }

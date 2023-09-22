@@ -83,9 +83,9 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 MainButton(
-                    onClick = {},
+                    modifier = Modifier.fillMaxWidth(0.35f),
                     type = ButtonTypes.OUTLINE,
-                    modifier = Modifier.fillMaxWidth(0.35f)
+                    onClick = {}
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.google_logo),
@@ -105,7 +105,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     color = MaterialTheme.colorScheme.outline,
                     style = MaterialTheme.typography.bodyMedium
                 )
-                MainButton(text = R.string.sign_in, type = ButtonTypes.PRIMARY_TEXT, onClick = {})
+                MainButton(type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_in, onClick = {})
             }
         }
     }

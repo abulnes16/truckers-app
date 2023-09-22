@@ -53,7 +53,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
             )
             MainButton(
                 type = ButtonTypes.OUTLINE,
-                onClick = { /*TODO*/ },
+                onClick = {},
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.google_logo),
@@ -71,7 +71,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 
             }
             SpacerText(text = R.string.or, fraction = 0.4f)
-            MainButton(onClick = { /*TODO*/ }, text = R.string.sign_in_with_password)
+            MainButton(text = R.string.sign_in_with_password, onClick = {})
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -79,9 +79,9 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
                     color = MaterialTheme.colorScheme.outline
                 )
                 MainButton(
-                    onClick = { /*TODO*/ },
                     type = ButtonTypes.PRIMARY_TEXT,
-                    text = R.string.sign_up
+                    text = R.string.sign_up,
+                    onClick = {}
                 )
             }
         }

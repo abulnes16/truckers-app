@@ -77,9 +77,9 @@ fun SignInScreen(modifier: Modifier = Modifier) {
 
             MainButton(text = R.string.sign_in, onClick = {})
             MainButton(
+                type = ButtonTypes.PRIMARY_TEXT,
                 text = R.string.forgot_password,
-                onClick = {},
-                type = ButtonTypes.PRIMARY_TEXT
+                onClick = {}
             )
             SpacerText(
                 text = R.string.or_continue_with,
@@ -88,9 +88,9 @@ fun SignInScreen(modifier: Modifier = Modifier) {
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 MainButton(
-                    onClick = {},
+                    modifier = Modifier.fillMaxWidth(0.35f),
                     type = ButtonTypes.OUTLINE,
-                    modifier = Modifier.fillMaxWidth(0.35f)
+                    onClick = {}
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.google_logo),
@@ -110,7 +110,7 @@ fun SignInScreen(modifier: Modifier = Modifier) {
                     color = MaterialTheme.colorScheme.outline,
                     style = MaterialTheme.typography.bodyMedium
                 )
-                MainButton(text = R.string.sign_up, type = ButtonTypes.PRIMARY_TEXT, onClick = {})
+                MainButton(type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up, onClick = {})
             }
         }
     }

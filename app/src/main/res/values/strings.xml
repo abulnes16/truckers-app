@@ -34,5 +34,13 @@
     <string name="select_recovery_method">Select which contact details should we use to reset your password</string>
     <string name="via_email">via Email:</string>
     <string name="accessibility_forgot_password">Recover your password</string>
+
+    <!--Create New Password-->
+    <string name="create_new_password">Create New Password</string>
+    <string name="create_your_new_password">Create Your New Password</string>
+    <string name="accessibility_create_password">Create your new password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+
     <!-- ########################################################-->
 </resources>
