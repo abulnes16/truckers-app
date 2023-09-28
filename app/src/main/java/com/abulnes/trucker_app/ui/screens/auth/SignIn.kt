@@ -34,8 +34,13 @@ import com.abulnes.trucker_app.ui.components.molecules.SpacerText
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 @Composable
-fun SignInScreen(modifier: Modifier = Modifier) {
-    Screen(modifier = modifier, arrangement = Arrangement.SpaceAround) {
+fun SignInScreen(
+    onSignIn: () -> Unit,
+    onClickForgotPassword: () -> Unit,
+    onClickSignUp: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Screen(modifier = modifier, arrangement = Arrangement.SpaceAround, withScroll = true) {
         Logo()
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -75,11 +80,11 @@ fun SignInScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(vertical = 8.dp)
             )
 
-            MainButton(text = R.string.sign_in, onClick = {})
+            MainButton(text = R.string.sign_in, onClick = onSignIn)
             MainButton(
                 type = ButtonTypes.PRIMARY_TEXT,
                 text = R.string.forgot_password,
-                onClick = {}
+                onClick = onClickForgotPassword
             )
             SpacerText(
                 text = R.string.or_continue_with,
@@ -110,7 +115,11 @@ fun SignInScreen(modifier: Modifier = Modifier) {
                     color = MaterialTheme.colorScheme.outline,
                     style = MaterialTheme.typography.bodyMedium
                 )
-                MainButton(type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up, onClick = {})
+                MainButton(
+                    type = ButtonTypes.PRIMARY_TEXT,
+                    text = R.string.sign_up,
+                    onClick = onClickSignUp,
+                )
             }
         }
     }
@@ -121,7 +130,7 @@ fun SignInScreen(modifier: Modifier = Modifier) {
 @Composable
 fun SignInScreenPreview() {
     TruckerAppTheme {
-        SignInScreen()
+        SignInScreen({}, {}, {})
     }
 
 }

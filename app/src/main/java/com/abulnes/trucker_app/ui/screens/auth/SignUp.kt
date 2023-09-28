@@ -34,7 +34,7 @@ import com.abulnes.trucker_app.ui.components.molecules.SpacerText
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 @Composable
-fun SignUpScreen(modifier: Modifier = Modifier) {
+fun SignUpScreen(onSignUp: () -> Unit, onClickSignIn: () -> Unit, modifier: Modifier = Modifier) {
     Screen(modifier = modifier, arrangement = Arrangement.SpaceAround) {
         Logo()
         Column(
@@ -75,7 +75,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                 textFontWeight = FontWeight.SemiBold
             )
 
-            MainButton(text = R.string.sign_up, onClick = {})
+            MainButton(text = R.string.sign_up, onClick = onSignUp)
             SpacerText(
                 text = R.string.or_continue_with,
                 fraction = 0.25f,
@@ -105,7 +105,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     color = MaterialTheme.colorScheme.outline,
                     style = MaterialTheme.typography.bodyMedium
                 )
-                MainButton(type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_in, onClick = {})
+                MainButton(type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_in, onClick = onClickSignIn)
             }
         }
     }
@@ -116,7 +116,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
 @Composable
 fun SignUpScreenPreview() {
     TruckerAppTheme {
-        SignUpScreen()
+        SignUpScreen({}, {})
     }
 
 }

@@ -1,5 +1,6 @@
 package com.abulnes.trucker_app.ui.components.atoms
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,12 +31,19 @@ enum class ButtonTypes {
 fun ButtonContent(
     modifier: Modifier = Modifier,
     text: Int? = null,
+    buttonText: String? = null,
     content: (@Composable () -> Unit)? = null,
 ) {
     val contentModifier = modifier.padding(8.dp)
-    if (text != null) {
+
+
+    if (text != null || buttonText != null) {
+
+        val renderText =
+            if (text != null) stringResource(id = text) else if (buttonText !== null) buttonText else ""
+
         Text(
-            text = stringResource(id = text),
+            text = renderText,
             modifier = contentModifier,
             fontFamily = urbanistFontFamily,
             fontWeight = FontWeight.Bold
@@ -52,10 +60,11 @@ fun ButtonContent(
 
 @Composable
 fun MainButton(
-    onClick: ()-> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     type: ButtonTypes = ButtonTypes.PRIMARY,
     @StringRes text: Int? = null,
+    buttonText: String? = null,
     textModifier: Modifier = Modifier,
     content: @Composable() (() -> Unit)? = null
 ) {
@@ -67,7 +76,12 @@ fun MainButton(
     when (type) {
         ButtonTypes.PRIMARY -> {
             Button(onClick = onClick, modifier = buttonModifier) {
-                ButtonContent(text = text, modifier = textModifier, content = content)
+                ButtonContent(
+                    text = text,
+                    buttonText = buttonText,
+                    modifier = textModifier,
+                    content = content
+                )
             }
         }
 
@@ -77,7 +91,12 @@ fun MainButton(
                 modifier = buttonModifier,
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onBackground)
             ) {
-                ButtonContent(text = text, modifier = textModifier, content = content)
+                ButtonContent(
+                    text = text,
+                    buttonText = buttonText,
+                    modifier = textModifier,
+                    content = content
+                )
             }
         }
 
@@ -87,13 +106,23 @@ fun MainButton(
                 modifier = buttonModifier,
                 colors = ButtonDefaults.filledTonalButtonColors(contentColor = MaterialTheme.colorScheme.primary)
             ) {
-                ButtonContent(text = text, modifier = textModifier, content = content)
+                ButtonContent(
+                    text = text,
+                    buttonText = buttonText,
+                    modifier = textModifier,
+                    content = content
+                )
             }
         }
 
         ButtonTypes.PRIMARY_TEXT -> {
             TextButton(onClick = onClick, modifier = modifier) {
-                ButtonContent(text = text, modifier = textModifier, content = content)
+                ButtonContent(
+                    text = text,
+                    buttonText = buttonText,
+                    modifier = textModifier,
+                    content = content
+                )
             }
         }
 
@@ -116,7 +145,7 @@ fun PrimaryButtonPreview() {
 @Composable
 fun SecondaryButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = {},type = ButtonTypes.SECONDARY, text = R.string.sign_up)
+        MainButton(onClick = {}, type = ButtonTypes.SECONDARY, text = R.string.sign_up)
     }
 }
 
@@ -124,7 +153,7 @@ fun SecondaryButtonPreview() {
 @Composable
 fun OutlineButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = {},type = ButtonTypes.OUTLINE, text = R.string.sign_up)
+        MainButton(onClick = {}, type = ButtonTypes.OUTLINE, text = R.string.sign_up)
     }
 }
 
@@ -132,6 +161,6 @@ fun OutlineButtonPreview() {
 @Composable
 fun PrimaryTextButtonPreview() {
     TruckerAppTheme {
-        MainButton(onClick = {},type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up)
+        MainButton(onClick = {}, type = ButtonTypes.PRIMARY_TEXT, text = R.string.sign_up)
     }
 }

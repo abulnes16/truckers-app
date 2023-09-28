@@ -27,7 +27,11 @@ import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 import com.abulnes.trucker_app.ui.theme.urbanistFontFamily
 
 @Composable
-fun WelcomeScreen(modifier: Modifier = Modifier) {
+fun WelcomeScreen(
+    onClickSignIn: () -> Unit,
+    onClickSignUp: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Screen(modifier = modifier, arrangement = Arrangement.SpaceAround) {
         Column {
             Image(
@@ -71,7 +75,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 
             }
             SpacerText(text = R.string.or, fraction = 0.4f)
-            MainButton(text = R.string.sign_in_with_password, onClick = {})
+            MainButton(text = R.string.sign_in_with_password, onClick = onClickSignIn)
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -81,7 +85,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
                 MainButton(
                     type = ButtonTypes.PRIMARY_TEXT,
                     text = R.string.sign_up,
-                    onClick = {}
+                    onClick = onClickSignUp
                 )
             }
         }
@@ -95,6 +99,6 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 @Composable
 fun WelcomeScreenPreview() {
     TruckerAppTheme {
-        WelcomeScreen()
+        WelcomeScreen(onClickSignIn = {}, onClickSignUp = {})
     }
 }

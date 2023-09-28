@@ -21,3 +21,8 @@ object ForgotPassword : AuthDestinations {
 object Welcome : AuthDestinations {
     override val route: String = "Welcome"
 }
+
+
+object CreatePassword : AuthDestinations {
+    override val route: String = "CreatePassword"
+}

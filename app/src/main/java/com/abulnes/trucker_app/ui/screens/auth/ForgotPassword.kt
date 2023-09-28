@@ -42,7 +42,11 @@ import com.abulnes.trucker_app.ui.theme.md_theme_light_outlineVariant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ForgotPasswordScreen(modifier: Modifier = Modifier) {
+fun ForgotPasswordScreen(
+    onGoBack: () -> Unit,
+    onCreatePassword: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     var recoveryMethodSelected by remember {
         mutableStateOf("")
@@ -68,7 +72,7 @@ fun ForgotPasswordScreen(modifier: Modifier = Modifier) {
         AppTopBar(
             title = R.string.forgot_password_title,
             canNavigateUp = true,
-            onGoBack = { /*TODO*/ }
+            onGoBack = onGoBack
         )
     }) { padding ->
         Screen(
@@ -112,7 +116,7 @@ fun ForgotPasswordScreen(modifier: Modifier = Modifier) {
                     .padding(bottom = 16.dp),
                 verticalArrangement = Arrangement.Bottom
             ) {
-                MainButton(text = R.string.continue_button, onClick = {})
+                MainButton(text = R.string.continue_button, onClick = onCreatePassword)
             }
 
 
@@ -127,7 +131,7 @@ fun ForgotPasswordScreen(modifier: Modifier = Modifier) {
 @Composable
 fun ForgotPasswordScreenPreview() {
     TruckerAppTheme {
-        ForgotPasswordScreen()
+        ForgotPasswordScreen({},{})
     }
 
 }

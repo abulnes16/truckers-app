@@ -31,12 +31,16 @@ import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreatePasswordScreen(modifier: Modifier = Modifier) {
+fun CreatePasswordScreen(
+    onGoBack: () -> Unit,
+    onResetPassword: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold(modifier = modifier, topBar = {
         AppTopBar(
             title = R.string.create_new_password,
             canNavigateUp = true,
-            onGoBack = { /*TODO*/ }
+            onGoBack = onGoBack
         )
     }) {
         Screen(modifier = modifier.padding(it), arrangement = Arrangement.SpaceAround) {
@@ -87,7 +91,7 @@ fun CreatePasswordScreen(modifier: Modifier = Modifier) {
 
             }
 
-            MainButton(onClick = {}, text = R.string.continue_button)
+            MainButton(onClick = onResetPassword, text = R.string.continue_button)
         }
     }
 }
@@ -96,7 +100,7 @@ fun CreatePasswordScreen(modifier: Modifier = Modifier) {
 @Composable
 fun CreatePasswordScreenPreview() {
     TruckerAppTheme {
-        CreatePasswordScreen()
+        CreatePasswordScreen({}, {})
     }
 
 }
