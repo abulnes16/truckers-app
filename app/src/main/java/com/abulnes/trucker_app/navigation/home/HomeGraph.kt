@@ -14,33 +14,33 @@ import com.abulnes.trucker_app.ui.screens.home.ProfileScreen
 import com.abulnes.trucker_app.ui.screens.home.SearchScreen
 
 const val HOME_ROUTE = "home"
-fun NavGraphBuilder.homeGraph(navController: NavController){
-    navigation(startDestination = Events.route, route = HOME_ROUTE ){
-        composable(Events.route){
-            EventsScreen()
+fun NavGraphBuilder.homeGraph(navController: NavController) {
+    navigation(startDestination = Events.route, route = HOME_ROUTE) {
+        composable(Events.route) {
+            EventsScreen(onClickNavItem = { route -> navController.navigateWithBottomBar(route) })
         }
-        composable(EventDetail.route){
+        composable(EventDetail.route) {
             EventDetailScreen()
         }
-        composable(Map.route){
+        composable(Map.route) {
             MapScreen()
         }
-        composable(Search.route){
+        composable(Search.route) {
             SearchScreen()
         }
 
-        composable(Profile.route){
+        composable(Profile.route) {
             ProfileScreen()
         }
 
-        composable(MyEvents.route){
+        composable(MyEvents.route) {
             MyEventsScreen()
         }
 
-        composable(About.route){
+        composable(About.route) {
             AboutScreen()
         }
-        composable(Notifications.route){
+        composable(Notifications.route) {
             NotificationsScreen()
         }
     }

@@ -4,6 +4,14 @@
     <!--Common strings-->
     <string name="or">or</string>
     <string name="continue_button">Continue</string>
+    <string name="see_all">See all</string>
+
+    <!--Navigation strings-->
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
+    <string name="tickets">Tickets</string>
+    <string name="profile">Profile</string>
+
     <!-- ################### Auth Strings #######################-->
 
     <!--Welcome Screen -->
@@ -41,6 +49,17 @@
     <string name="accessibility_create_password">Create your new password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
+
+    <!-- ########################################################-->
+
+
+    <!-- ################### Home Strings #######################-->
+
+    <!--Home Events Screen-->
+    <string name="featured">Featured</string>
+    <string name="popular_event">Popular Event</string>
+    <string name="good_morning">Good morning</string>
+    <string name="events_search_placeholder">What event are you looking for…</string>
 
     <!-- ########################################################-->
 </resources>
