@@ -4,21 +4,21 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Card
-
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,15 +28,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abulnes.trucker_app.R
+import com.abulnes.trucker_app.data.entities.mockEvents
+import com.abulnes.trucker_app.data.entities.popularMockEvents
 import com.abulnes.trucker_app.ui.components.atoms.Input
 import com.abulnes.trucker_app.ui.components.atoms.Screen
+import com.abulnes.trucker_app.ui.components.molecules.EventItem
+import com.abulnes.trucker_app.ui.components.molecules.SectionTitle
 import com.abulnes.trucker_app.ui.components.organisms.BottomNavigationBar
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
@@ -55,7 +58,7 @@ fun EventsScreen(onClickNavItem: (String) -> Unit, modifier: Modifier = Modifier
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .size(40.dp)
+                        .size(30.dp)
                         .clip(
                             CircleShape
                         )
@@ -95,126 +98,45 @@ fun EventsScreen(onClickNavItem: (String) -> Unit, modifier: Modifier = Modifier
                 }
             )
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 28.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.featured),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = stringResource(id = R.string.see_all),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
+            SectionTitle(
+                title = R.string.featured,
+                actionText = R.string.see_all,
+                onClickAction = { /*TODO*/ }
+            )
 
-            Card(
-                shape = RoundedCornerShape(32.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                modifier = Modifier.width(350.dp)
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Image(
-                        painter = painterResource(id = R.drawable.concert),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .width(320.dp)
-                            .height(220.dp)
-                            .clip(
-                                RoundedCornerShape(38.dp)
-                            )
+            LazyRow() {
+                items(popularMockEvents) { event ->
+                    EventItem(
+                        name = event.name,
+                        date = event.date,
+                        hour = event.hour,
+                        image = R.drawable.concert,
+                        location = "Grand Park, New York"
                     )
-                    Text(
-                        text = "National Music Festival",
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    Text(
-                        text = "Mon, Dec 24  18:00 - 23:00 PM",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                    Row {
-                        Icon(
-                            imageVector = Icons.Filled.Place,
-                            contentDescription = null,
-                            modifier = Modifier.size(14.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            text = "Grand Park, New York",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.outline
-                        )
-                    }
                 }
             }
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 28.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.popular_event),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = stringResource(id = R.string.see_all),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
 
 
-            Card(
-                shape = RoundedCornerShape(32.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                modifier = Modifier.width(150.dp)
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Image(
-                        painter = painterResource(id = R.drawable.artjpg),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .width(140.dp)
-                            .height(80.dp)
-                            .clip(
-                                RoundedCornerShape(38.dp)
-                            )
+            SectionTitle(
+                title = R.string.popular_event,
+                actionText = R.string.see_all,
+                onClickAction = { /*TODO*/ }
+            )
+
+            LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Adaptive(150.dp)) {
+                items(mockEvents) { event ->
+                    EventItem(
+                        name = event.name,
+                        date = event.date,
+                        hour = event.hour,
+                        image = R.drawable.artjpg,
+                        location = "Grand Park, New York",
+                        modifier = Modifier.heightIn(min = 150.dp)
                     )
-                    Text(
-                        text = "Art Workshops",
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    Text(
-                        text = "Mon, Dec 24  18:00 - 23:00 PM",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                    Row {
-                        Icon(
-                            imageVector = Icons.Filled.Place,
-                            contentDescription = null,
-                            modifier = Modifier.size(14.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            text = "Grand Park, New York",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.outline
-                        )
-                    }
                 }
             }
+
 
         }
     }
