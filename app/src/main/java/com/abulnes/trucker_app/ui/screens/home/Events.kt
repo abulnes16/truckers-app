@@ -3,18 +3,17 @@ package com.abulnes.trucker_app.ui.screens.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
@@ -37,14 +36,13 @@ import com.abulnes.trucker_app.R
 import com.abulnes.trucker_app.data.entities.mockEvents
 import com.abulnes.trucker_app.data.entities.popularMockEvents
 import com.abulnes.trucker_app.ui.components.atoms.Input
-import com.abulnes.trucker_app.ui.components.atoms.Screen
 import com.abulnes.trucker_app.ui.components.molecules.EventItem
 import com.abulnes.trucker_app.ui.components.molecules.SectionTitle
 import com.abulnes.trucker_app.ui.components.organisms.BottomNavigationBar
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun EventsScreen(onClickNavItem: (String) -> Unit, modifier: Modifier = Modifier) {
     Scaffold(
@@ -75,71 +73,105 @@ fun EventsScreen(onClickNavItem: (String) -> Unit, modifier: Modifier = Modifier
         bottomBar = { BottomNavigationBar(onClickNavItem = onClickNavItem) },
         modifier = modifier,
     ) {
-        Screen(modifier = Modifier.padding(it), withScroll = true) {
-            Input(
-                value = "",
-                onValueChange = {},
-                leadingIcon = {
-                    Icon(imageVector = Icons.Filled.Search, contentDescription = null)
-                },
-                trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Filled.List,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                },
-                placeholder = {
-                    Text(
-                        text = stringResource(id = R.string.events_search_placeholder),
-                        color = MaterialTheme.colorScheme.outlineVariant,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-            )
+        LazyColumn(
+            modifier = Modifier
+                .padding(it)
+        ) {
+            item {
+                Input(
+                    value = "",
+                    onValueChange = {},
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Filled.Search, contentDescription = null)
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.List,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    },
+                    placeholder = {
+                        Text(
+                            text = stringResource(id = R.string.events_search_placeholder),
+                            color = MaterialTheme.colorScheme.outlineVariant,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                )
+            }
+            item {
+                SectionTitle(
+                    title = R.string.featured,
+                    actionText = R.string.see_all,
+                    onClickAction = { /*TODO*/ }
+                )
+            }
 
-            SectionTitle(
-                title = R.string.featured,
-                actionText = R.string.see_all,
-                onClickAction = { /*TODO*/ }
-            )
 
-            LazyRow() {
-                items(popularMockEvents) { event ->
-                    EventItem(
-                        name = event.name,
-                        date = event.date,
-                        hour = event.hour,
-                        image = R.drawable.concert,
-                        location = "Grand Park, New York"
-                    )
+
+
+            item {
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+
+                    items(popularMockEvents) { event ->
+                        EventItem(
+                            name = event.name,
+                            date = event.date,
+                            hour = event.hour,
+                            image = R.drawable.concert,
+                            location = "Grand Park, New York"
+                        )
+                    }
                 }
             }
 
 
 
-            SectionTitle(
-                title = R.string.popular_event,
-                actionText = R.string.see_all,
-                onClickAction = { /*TODO*/ }
-            )
 
-            LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Adaptive(150.dp)) {
-                items(mockEvents) { event ->
-                    EventItem(
-                        name = event.name,
-                        date = event.date,
-                        hour = event.hour,
-                        image = R.drawable.artjpg,
-                        location = "Grand Park, New York",
-                        modifier = Modifier.heightIn(min = 150.dp)
-                    )
-                }
+
+
+
+            item {
+                SectionTitle(
+                    title = R.string.popular_event,
+                    actionText = R.string.see_all,
+                    onClickAction = { /*TODO*/ }
+                )
             }
 
+            item {
+
+                FlowRow(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(
+                        16.dp,
+                        Alignment.CenterHorizontally
+                    ),
+                    modifier = Modifier.fillMaxWidth(),
+                    maxItemsInEachRow = 2,
+                ) {
+
+                    mockEvents.forEach { event ->
+                        EventItem(
+                            name = event.name,
+                            date = event.date,
+                            hour = event.hour,
+                            image = R.drawable.artjpg,
+                            location = "Grand Park, New York",
+                            modifier = Modifier.width(180.dp),
+                            imageModifier = Modifier
+                                .width(150.dp)
+                                .height(150.dp)
+                        )
+                    }
+                }
+            }
 
         }
+
     }
+
 }
 
 
