@@ -2,20 +2,16 @@ package com.abulnes.trucker_app.ui.components.molecules
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,24 +33,25 @@ fun RoundedItem(
     text: String,
     modifier: Modifier = Modifier,
     @StringRes label: Int? = null,
-    border: BorderStroke? = null
+    subtitle: String? = null,
+    border: BorderStroke? = null,
+    circleSize: Int = 60,
+    iconSize: Int = 30,
+    rowModifier: Modifier = Modifier,
 ) {
-
-
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 24.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(32.dp),
         border = border,
         colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
         Row(
-            modifier = Modifier.padding(24.dp),
+            modifier = rowModifier,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircleIcon(icon = icon)
+            CircleIcon(icon = icon, circleSize = circleSize, iconSize = iconSize)
             Column(
                 modifier = Modifier
                     .padding(start = 16.dp)
@@ -71,6 +68,10 @@ fun RoundedItem(
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
+
+                if (subtitle != null) {
+                    Text(text = subtitle, style = MaterialTheme.typography.bodySmall)
+                }
             }
         }
 
@@ -85,6 +86,18 @@ fun RoundedItemPreview() {
             icon = Icons.Filled.Email,
             label = R.string.via_email,
             text = "angel_bulnes16@yahoo.com"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RoundedItemPreviewWithSubtitle() {
+    TruckerAppTheme {
+        RoundedItem(
+            icon = Icons.Filled.LocationOn,
+            text = "Grand Park, New York City, US",
+            subtitle = "Grand City St. 100, New York United States",
         )
     }
 }

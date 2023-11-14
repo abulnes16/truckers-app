@@ -17,7 +17,10 @@ const val HOME_ROUTE = "home"
 fun NavGraphBuilder.homeGraph(navController: NavController) {
     navigation(startDestination = Events.route, route = HOME_ROUTE) {
         composable(Events.route) {
-            EventsScreen(onClickNavItem = { route -> navController.navigateWithBottomBar(route) })
+            EventsScreen(
+                onClickNavItem = { route -> navController.navigateWithBottomBar(route) },
+                onClickSearch = { navController.navigateToSearch() }
+            )
         }
         composable(EventDetail.route) {
             EventDetailScreen()

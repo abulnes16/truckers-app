@@ -15,3 +15,7 @@ fun NavController.navigateWithBottomBar(route: String) {
         restoreState = true
     }
 }
+
+fun NavController.navigateToSearch(){
+    this.navigate(Search.route)
+}

@@ -19,14 +19,19 @@ import androidx.compose.ui.unit.dp
 import com.abulnes.trucker_app.ui.theme.TruckerAppTheme
 
 @Composable
-fun CircleIcon(icon: ImageVector, modifier: Modifier = Modifier) {
+fun CircleIcon(
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
+    circleSize: Int = 60,
+    iconSize: Int = 30
+) {
     Card(
         shape = CircleShape,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             contentColor = MaterialTheme.colorScheme.onSurface
         ),
-        modifier = modifier.size(60.dp),
+        modifier = modifier.size(circleSize.dp),
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -36,12 +41,13 @@ fun CircleIcon(icon: ImageVector, modifier: Modifier = Modifier) {
                 imageVector = icon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.size(iconSize.dp)
             )
         }
 
     }
 }
+
 @Preview
 @Composable
 fun CircleIconPreview() {

@@ -61,5 +61,10 @@
     <string name="good_morning">Good morning</string>
     <string name="events_search_placeholder">What event are you looking for…</string>
 
+    <!-- Event Details Screen -->
+    <string name="about_event">About Event</string>
+    <string name="location">Location</string>
+    <string name="book_event">Book Event</string>
+
     <!-- ########################################################-->
 </resources>
