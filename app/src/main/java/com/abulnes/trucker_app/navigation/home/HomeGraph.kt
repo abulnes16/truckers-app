@@ -4,14 +4,14 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.abulnes.trucker_app.ui.screens.home.AboutScreen
-import com.abulnes.trucker_app.ui.screens.home.EventDetailScreen
-import com.abulnes.trucker_app.ui.screens.home.EventsScreen
-import com.abulnes.trucker_app.ui.screens.home.MapScreen
-import com.abulnes.trucker_app.ui.screens.home.MyEventsScreen
-import com.abulnes.trucker_app.ui.screens.home.NotificationsScreen
-import com.abulnes.trucker_app.ui.screens.home.ProfileScreen
-import com.abulnes.trucker_app.ui.screens.home.SearchScreen
+import com.abulnes.trucker_app.presentation.screens.home.about.AboutScreen
+import com.abulnes.trucker_app.presentation.screens.home.event_detail.EventDetailScreen
+import com.abulnes.trucker_app.presentation.screens.home.events.EventsScreen
+import com.abulnes.trucker_app.presentation.screens.home.map.MapScreen
+import com.abulnes.trucker_app.presentation.screens.home.my_events.MyEventsScreen
+import com.abulnes.trucker_app.presentation.screens.home.notifications.NotificationsScreen
+import com.abulnes.trucker_app.presentation.screens.home.profile.ProfileScreen
+import com.abulnes.trucker_app.presentation.screens.home.search.SearchScreen
 
 const val HOME_ROUTE = "home"
 fun NavGraphBuilder.homeGraph(navController: NavController) {
