@@ -1,5 +1,6 @@
 package com.abulnes.trucker_app.navigation.auth
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -13,7 +14,7 @@ import com.abulnes.trucker_app.presentation.screens.auth.welcome.WelcomeScreen
 
 const val AUTH_ROUTE = "auth"
 
-fun NavGraphBuilder.authGraph(navController: NavController) {
+fun NavGraphBuilder.authGraph(navController: NavController, snackBarHostState: SnackbarHostState) {
     navigation(startDestination = Welcome.route, route = AUTH_ROUTE) {
 
         composable(Welcome.route) {
@@ -32,7 +33,8 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
         composable(SignUp.route) {
             SignUpScreen(
                 onSignUp = { navController.navigateToHome() },
-                onClickSignIn = { navController.navigateToSignIn() }
+                onClickSignIn = { navController.navigateToSignIn() },
+                snackBarHostState = snackBarHostState
             )
         }
         composable(ForgotPassword.route) {

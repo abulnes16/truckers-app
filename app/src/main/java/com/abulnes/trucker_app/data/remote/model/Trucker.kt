@@ -1,4 +1,4 @@
-package com.abulnes.trucker_app.data.remote
+package com.abulnes.trucker_app.data.remote.model
 
 data class Trucker(
     val id: String,
