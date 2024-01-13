@@ -1,4 +1,4 @@
-package com.abulnes.trucker_app.domain.services
+package com.abulnes.trucker_app.domain.repository
 
 import com.google.firebase.auth.FirebaseUser
 

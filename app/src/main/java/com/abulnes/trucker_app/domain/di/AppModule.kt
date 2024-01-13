@@ -5,18 +5,20 @@ import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.abulnes.trucker_app.data.preferences.DefaultPreferences
-import com.abulnes.trucker_app.data.service.AuthRepositoryImpl
+import com.abulnes.trucker_app.data.repository.AuthRepositoryImpl
 import com.abulnes.trucker_app.domain.preferences.Preferences
-import com.abulnes.trucker_app.domain.services.AuthRepository
+import com.abulnes.trucker_app.domain.repository.AuthRepository
+import com.abulnes.trucker_app.domain.use_case.authentication.AuthenticationUseCases
+import com.abulnes.trucker_app.domain.use_case.authentication.RegisterUser
 import com.abulnes.trucker_app.domain.use_case.validators.ValidateEmail
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatePassword
 import com.abulnes.trucker_app.domain.use_case.validators.ValidateSignUp
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatorsUseCases
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -56,7 +58,6 @@ object AppModule {
     @Provides
     @Singleton
     fun providesValidatorsUseCase(): ValidatorsUseCases {
-
         val validateEmail = ValidateEmail()
         val validatePassword = ValidatePassword()
         return ValidatorsUseCases(
@@ -69,7 +70,10 @@ object AppModule {
         )
     }
 
+    // Authentication DI
     @Provides
     @Singleton
     fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
+
+
 }

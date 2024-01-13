@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abulnes.trucker_app.R
 import com.abulnes.trucker_app.domain.preferences.Preferences
-import com.abulnes.trucker_app.domain.services.AuthRepository
+import com.abulnes.trucker_app.domain.use_case.authentication.AuthenticationUseCases
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatorsUseCases
 import com.abulnes.trucker_app.utils.UiEvent
 import com.abulnes.trucker_app.utils.UiText
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
+    private val authenticationUseCases: AuthenticationUseCases,
     private val preferences: Preferences,
     private val validatorsUseCases: ValidatorsUseCases
 ) : ViewModel() {
@@ -29,7 +29,7 @@ class SignUpViewModel @Inject constructor(
             name = "",
             email = "",
             password = "",
-            rememberUser = false
+            loading = false,
         )
     )
         private set
@@ -40,23 +40,32 @@ class SignUpViewModel @Inject constructor(
     fun onEvent(event: SignUpEvent) {
         when (event) {
             is SignUpEvent.OnNameChange -> {
-                state = state.copy(name = event.name)
+                state = state.copy(name = event.name, nameError = event.name.isBlank())
             }
 
             is SignUpEvent.OnPasswordChange -> {
-                state = state.copy(password = event.password)
+
+                val validPassword = validatorsUseCases.validatePassword(event.password)
+                state = state.copy(password = event.password, passwordError = !validPassword)
             }
 
             is SignUpEvent.OnEmailChange -> {
-                state = state.copy(email = event.email)
+                val validEmail = validatorsUseCases.validateEmail(event.email)
+                state = state.copy(email = event.email, emailError = !validEmail)
+            }
+
+            is SignUpEvent.OnShowPassword -> {
+                state = state.copy(showPassword = event.show)
             }
 
             is SignUpEvent.OnSignUp -> {
                 onSignUp()
             }
 
+
+
             is SignUpEvent.OnRememberUser -> {
-                preferences.saveUserSession(!state.rememberUser)
+                preferences.saveUserSession(event.rememberSession)
             }
 
             is SignUpEvent.OnGoogleSignUp -> {
@@ -68,7 +77,7 @@ class SignUpViewModel @Inject constructor(
     private fun onSignUp() {
 
         viewModelScope.launch {
-
+            state = state.copy(loading = true)
             val isFormValid = validatorsUseCases.validateSignUp(
                 name = state.name,
                 email = state.email,
@@ -77,16 +86,20 @@ class SignUpViewModel @Inject constructor(
 
             if(!isFormValid){
                 _uiEvent.send(UiEvent.ShowSnackBar(UiText.StringResource(R.string.invalid_sign_up_form)))
+                state = state.copy(loading = false)
                 return@launch
             }
 
-            authRepository.createUserWithEmailAndPassword(
+            authenticationUseCases.registerUser(
                 name = state.name,
                 email = state.email,
                 password = state.password
             ).onSuccess {
+                state = state.copy(loading = false)
                 _uiEvent.send(UiEvent.Success)
+
             }.onFailure {
+                state = state.copy(loading = false)
                 _uiEvent.send(UiEvent.ShowSnackBar(UiText.StringResource(R.string.sign_up_error)))
             }
         }

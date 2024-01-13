@@ -34,6 +34,11 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up_error">An occurred while we were creating your account, please try again</string>
     <string name="invalid_sign_up_form">You need to fill all the fields: Name, Email and Password</string>
+    <string name="invalid_email">Email is invalid</string>
+    <string name="invalid_password">Password don\'t match criteria</string>
+    <string name="invalid_name">Name must not be empty</string>
+    <string name="show_password">Show Password</string>
+
 
     <!--Sign In Screen -->
     <string name="login_to_your_account">Login to Your Account</string>

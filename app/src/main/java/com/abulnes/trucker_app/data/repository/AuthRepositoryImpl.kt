@@ -1,8 +1,8 @@
-package com.abulnes.trucker_app.data.service
+package com.abulnes.trucker_app.data.repository
 
 
 import android.util.Log
-import com.abulnes.trucker_app.domain.services.AuthRepository
+import com.abulnes.trucker_app.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
