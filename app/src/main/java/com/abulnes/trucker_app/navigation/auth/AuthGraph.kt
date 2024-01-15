@@ -11,16 +11,21 @@ import com.abulnes.trucker_app.presentation.screens.auth.forgot_password.ForgotP
 import com.abulnes.trucker_app.presentation.screens.auth.sign_in.SignInScreen
 import com.abulnes.trucker_app.presentation.screens.auth.sign_up.SignUpScreen
 import com.abulnes.trucker_app.presentation.screens.auth.welcome.WelcomeScreen
+import com.abulnes.trucker_app.presentation.screens.auth.welcome.WelcomeViewModel
+import com.abulnes.trucker_app.presentation.utils.authentication.GoogleAuthUiClient
 
 const val AUTH_ROUTE = "auth"
 
-fun NavGraphBuilder.authGraph(navController: NavController, snackBarHostState: SnackbarHostState) {
+fun NavGraphBuilder.authGraph(
+    navController: NavController,
+    snackBarHostState: SnackbarHostState
+) {
     navigation(startDestination = Welcome.route, route = AUTH_ROUTE) {
 
         composable(Welcome.route) {
             WelcomeScreen(
+                onClickSignIn = { navController.navigateToSignIn() },
                 onClickSignUp = { navController.navigateToSignUp() },
-                onClickSignIn = { navController.navigateToSignIn() }
             )
         }
         composable(SignIn.route) {

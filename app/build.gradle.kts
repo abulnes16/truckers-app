@@ -72,6 +72,7 @@ android {
 
 dependencies {
 
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
     val navVersion = "2.7.6"
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -93,7 +94,7 @@ dependencies {
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
-    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     // DataStore

@@ -95,21 +95,10 @@ fun SignInScreen(
                 modifier = Modifier.padding(top = 12.dp, bottom = 12.dp)
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                MainButton(
+               /* GoogleButton(
                     modifier = Modifier.fillMaxWidth(0.35f),
-                    type = ButtonTypes.OUTLINE,
-                    onClick = {}
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.google_logo),
-                        contentDescription = stringResource(
-                            id = R.string.accessibility_google_logo
-                        ),
-                        modifier = Modifier
-                            .width(25.dp)
-                            .height(25.dp)
-                    )
-                }
+                    onHandleSignIn = {}
+                )*/
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {

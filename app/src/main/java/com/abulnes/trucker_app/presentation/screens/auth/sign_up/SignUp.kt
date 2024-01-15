@@ -35,7 +35,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abulnes.trucker_app.R
@@ -46,10 +45,9 @@ import com.abulnes.trucker_app.presentation.components.atoms.Logo
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.components.atoms.Screen
 import com.abulnes.trucker_app.presentation.components.molecules.SpacerText
+import com.abulnes.trucker_app.presentation.components.organisms.GoogleButton
 import com.abulnes.trucker_app.presentation.theme.Spacing
-import com.abulnes.trucker_app.presentation.theme.TruckerAppTheme
 import com.abulnes.trucker_app.utils.UiEvent
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun SignUpScreen(
@@ -167,21 +165,10 @@ fun SignUpScreen(
                 modifier = Modifier.padding(top = 24.dp, bottom = 12.dp)
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                MainButton(
+                /*GoogleButton(
                     modifier = Modifier.fillMaxWidth(0.35f),
-                    type = ButtonTypes.OUTLINE,
-                    onClick = {}
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.google_logo),
-                        contentDescription = stringResource(
-                            id = R.string.accessibility_google_logo
-                        ),
-                        modifier = Modifier
-                            .width(25.dp)
-                            .height(25.dp)
-                    )
-                }
+                    onHandleSignIn = {}
+                )*/
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {

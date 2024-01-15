@@ -2,6 +2,7 @@ package com.abulnes.trucker_app.domain.di
 
 
 import android.app.Application
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.abulnes.trucker_app.data.preferences.DefaultPreferences
@@ -14,10 +15,14 @@ import com.abulnes.trucker_app.domain.use_case.validators.ValidateEmail
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatePassword
 import com.abulnes.trucker_app.domain.use_case.validators.ValidateSignUp
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatorsUseCases
+import com.abulnes.trucker_app.presentation.utils.authentication.GoogleAuthUiClient
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -75,5 +80,19 @@ object AppModule {
     @Singleton
     fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
 
+    @Provides
+    @Singleton
+    fun provideOneTapClient(@ApplicationContext context: Context): SignInClient {
+        return Identity.getSignInClient(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGoogleAuthClient(
+        @ApplicationContext context: Context,
+        oneTapClient: SignInClient
+    ): GoogleAuthUiClient {
+        return GoogleAuthUiClient(context = context, oneTapClient = oneTapClient)
+    }
 
 }
