@@ -1,3 +1,5 @@
+import java.util.Properties
+import java.io.FileInputStream
 
 
 plugins {
@@ -7,10 +9,14 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
+val localProperties = Properties()
+localProperties.load(FileInputStream(project.rootProject.file("local.properties")))
 
 android {
     namespace = "com.abulnes.trucker_app"
     compileSdk = 34
+
+
 
     defaultConfig {
         applicationId = "com.abulnes.trucker_app"
@@ -23,6 +29,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        resValue("string", "web_client_id", localProperties.getProperty("FIREBASE_WEB_CLIENT_ID"))
     }
 
     flavorDimensions += "truckers"
@@ -31,6 +38,7 @@ android {
         create("dev"){
             dimension = "truckers"
             applicationIdSuffix = ".dev"
+
         }
         create("qa"){
             dimension = "truckers"
