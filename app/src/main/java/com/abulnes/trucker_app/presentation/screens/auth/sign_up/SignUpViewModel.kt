@@ -67,10 +67,6 @@ class SignUpViewModel @Inject constructor(
             is SignUpEvent.OnRememberUser -> {
                 preferences.saveUserSession(event.rememberSession)
             }
-
-            is SignUpEvent.OnGoogleSignUp -> {
-
-            }
         }
     }
 

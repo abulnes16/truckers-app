@@ -13,6 +13,7 @@ import com.abulnes.trucker_app.domain.use_case.authentication.AuthenticationUseC
 import com.abulnes.trucker_app.domain.use_case.authentication.RegisterUser
 import com.abulnes.trucker_app.domain.use_case.validators.ValidateEmail
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatePassword
+import com.abulnes.trucker_app.domain.use_case.validators.ValidateSignIn
 import com.abulnes.trucker_app.domain.use_case.validators.ValidateSignUp
 import com.abulnes.trucker_app.domain.use_case.validators.ValidatorsUseCases
 import com.abulnes.trucker_app.presentation.utils.authentication.GoogleAuthUiClient
@@ -70,7 +71,11 @@ object AppModule {
             validatePassword = validatePassword,
             validateSignUp = ValidateSignUp(
                 validatePassword = validatePassword,
-                validateEmail = validateEmail
+                validateEmail = validateEmail,
+            ),
+            validateSignIn = ValidateSignIn(
+                validateEmail = validateEmail,
+                validatePassword = validatePassword
             )
         )
     }

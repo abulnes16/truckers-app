@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.abulnes.trucker_app.R
+import com.abulnes.trucker_app.TruckerAppApplication
 import com.abulnes.trucker_app.presentation.components.atoms.ButtonTypes
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.theme.Spacing
@@ -33,15 +34,14 @@ fun GoogleButton(
     onHandleSignIn: (SignInResult?) -> Unit,
     modifier: Modifier = Modifier,
     imageSize: Dp = 20.dp,
-    text: Int? = null,
-    googleAuthUiClient: GoogleAuthUiClient
+    text: Int? = null
 ) {
 
 
     val coroutineScope = rememberCoroutineScope()
     val launcher =
         rememberGoogleAuthLauncher(
-            googleAuthUiClient = googleAuthUiClient,
+            googleAuthUiClient = TruckerAppApplication.googleAuthUiClient,
             resultHandler = onHandleSignIn
         )
 
@@ -50,7 +50,7 @@ fun GoogleButton(
         type = ButtonTypes.OUTLINE,
         onClick = {
             coroutineScope.launch {
-                val signInIntentSender = googleAuthUiClient.signIn()
+                val signInIntentSender = TruckerAppApplication.googleAuthUiClient.signIn()
                 launcher.launch(
                     IntentSenderRequest.Builder(
                         signInIntentSender ?: return@launch

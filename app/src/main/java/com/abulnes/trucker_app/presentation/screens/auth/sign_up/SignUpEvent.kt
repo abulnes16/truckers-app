@@ -1,6 +1,6 @@
 package com.abulnes.trucker_app.presentation.screens.auth.sign_up
 
-import com.abulnes.trucker_app.utils.UiText
+
 
 sealed class SignUpEvent{
     data class OnNameChange(val name: String): SignUpEvent()
@@ -10,6 +10,4 @@ sealed class SignUpEvent{
 
     data class OnShowPassword(val show: Boolean): SignUpEvent()
     object OnSignUp: SignUpEvent()
-
-    object OnGoogleSignUp: SignUpEvent()
 }

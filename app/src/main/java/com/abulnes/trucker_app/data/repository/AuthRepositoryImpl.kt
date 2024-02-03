@@ -2,13 +2,15 @@ package com.abulnes.trucker_app.data.repository
 
 
 import android.util.Log
+import com.abulnes.trucker_app.data.mapper.toUser
+import com.abulnes.trucker_app.domain.models.User
 import com.abulnes.trucker_app.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 
 const val AUTH_REPOSITORY_TAG = "[AuthRepository]"
@@ -22,18 +24,27 @@ class AuthRepositoryImpl @Inject constructor(private val firebaseAuth: FirebaseA
         email: String,
         password: String
     ): Result<Boolean> {
-       return try {
+        return try {
             val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            result.user?.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build())?.await()
+            result.user?.updateProfile(
+                UserProfileChangeRequest.Builder().setDisplayName(name).build()
+            )?.await()
             Result.success(true)
         } catch (e: Exception) {
-            Log.d(AUTH_REPOSITORY_TAG, e.message ?: "General Error")
+            Log.d(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
             Result.failure(e)
         }
     }
 
-    override suspend fun authenticate(email: String, password: String) {
-        TODO("Not yet implemented")
+    override suspend fun authenticate(email: String, password: String): Result<User> {
+        return try {
+            val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
+            val user = result.toUser()
+            Result.success(user)
+        } catch (e: Exception) {
+            Log.d(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
+            Result.failure(e)
+        }
     }
 
     override suspend fun signInWithProvider(provider: String) {

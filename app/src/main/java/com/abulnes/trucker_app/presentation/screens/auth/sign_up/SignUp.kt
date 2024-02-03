@@ -165,10 +165,10 @@ fun SignUpScreen(
                 modifier = Modifier.padding(top = 24.dp, bottom = 12.dp)
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                /*GoogleButton(
+                GoogleButton(
                     modifier = Modifier.fillMaxWidth(0.35f),
                     onHandleSignIn = {}
-                )*/
+                )
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {

@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abulnes.trucker_app.R
+import com.abulnes.trucker_app.TruckerAppApplication
 import com.abulnes.trucker_app.presentation.components.atoms.ButtonTypes
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.components.atoms.Screen
@@ -53,11 +54,6 @@ fun WelcomeScreen(
         }
     }
 
-
-
-
-
-
     Screen(modifier = modifier, arrangement = Arrangement.SpaceAround) {
         Column {
             Image(
@@ -83,8 +79,7 @@ fun WelcomeScreen(
             )
             GoogleButton(
                 onHandleSignIn = viewModel::onSignInResult,
-                text = R.string.continue_with_google,
-                googleAuthUiClient = viewModel.googleAuthUiClient
+                text = R.string.continue_with_google
             )
             SpacerText(text = R.string.or, fraction = 0.4f)
             MainButton(text = R.string.sign_in_with_password, onClick = onClickSignIn)

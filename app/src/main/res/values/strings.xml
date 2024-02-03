@@ -43,6 +43,8 @@
     <!--Sign In Screen -->
     <string name="login_to_your_account">Login to Your Account</string>
     <string name="forgot_password">Forgot the password?</string>
+    <string name="invalid_sign_in_form">You need to enter a valid email and password</string>
+    <string name="falied_sign_in">We couldn\'t sign in, please try again</string>
 
 
     <!--Forgot Password-->
