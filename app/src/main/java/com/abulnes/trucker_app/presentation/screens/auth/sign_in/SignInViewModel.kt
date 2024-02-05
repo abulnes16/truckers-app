@@ -38,8 +38,7 @@ class SignInViewModel @Inject constructor(
             }
 
             is SignInEvent.OnPasswordChange -> {
-                val isPasswordValid = validatorsUseCases.validatePassword(event.password)
-                state = state.copy(password = event.password, passwordError = !isPasswordValid)
+                state = state.copy(password = event.password)
             }
 
             is SignInEvent.OnRememberMeChange -> {
@@ -71,7 +70,10 @@ class SignInViewModel @Inject constructor(
                 return@launch
             }
 
-             authenticationUseCases.authenticate(email = state.email, password = state.password)
+             authenticationUseCases.authenticate(
+                 email = state.email,
+                 password = state.password
+             )
                  .onSuccess {
                      state = state.copy(loading = false)
                      _uiEvent.send(UiEvent.Success)

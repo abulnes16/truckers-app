@@ -30,7 +30,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abulnes.trucker_app.R
@@ -43,7 +42,6 @@ import com.abulnes.trucker_app.presentation.components.atoms.Screen
 import com.abulnes.trucker_app.presentation.components.molecules.SpacerText
 import com.abulnes.trucker_app.presentation.components.organisms.GoogleButton
 import com.abulnes.trucker_app.presentation.theme.Spacing
-import com.abulnes.trucker_app.presentation.theme.TruckerAppTheme
 import com.abulnes.trucker_app.utils.UiEvent
 
 @Composable
@@ -115,8 +113,6 @@ fun SignInScreen(
                         )
                     }
                 },
-                error = viewModel.state.passwordError,
-                textError = stringResource(id = R.string.invalid_password),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password),
                 visualTransformation = if (state.showPassword) VisualTransformation.None else PasswordVisualTransformation(
                     mask = '\u25CF'
