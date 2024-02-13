@@ -46,7 +46,8 @@ fun NavGraphBuilder.authGraph(
         composable(ForgotPassword.route) {
             ForgotPasswordScreen(
                 onGoBack = { navController.popBackStack() },
-                onCreatePassword = { navController.navigateToCreatePassword() }
+                onCreatePassword = { navController.navigateToCreatePassword() },
+                snackBarHostState = snackBarHostState
             )
         }
 

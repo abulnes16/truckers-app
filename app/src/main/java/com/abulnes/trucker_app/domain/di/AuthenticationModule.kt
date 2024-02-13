@@ -3,6 +3,7 @@ package com.abulnes.trucker_app.domain.di
 import com.abulnes.trucker_app.domain.repository.AuthRepository
 import com.abulnes.trucker_app.domain.use_case.authentication.Authenticate
 import com.abulnes.trucker_app.domain.use_case.authentication.AuthenticationUseCases
+import com.abulnes.trucker_app.domain.use_case.authentication.RecoverPassword
 import com.abulnes.trucker_app.domain.use_case.authentication.RegisterUser
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,8 @@ object AuthenticationModule {
     fun provideAuthenticationUseCases(authRepository: AuthRepository): AuthenticationUseCases {
         return AuthenticationUseCases(
             registerUser = RegisterUser(authRepository),
-            authenticate = Authenticate(authRepository)
+            authenticate = Authenticate(authRepository),
+            recoverPassword = RecoverPassword(authRepository)
         )
     }
 }

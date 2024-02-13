@@ -3,7 +3,9 @@ package com.abulnes.trucker_app.presentation.screens.auth.create_password
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -27,6 +29,7 @@ import com.abulnes.trucker_app.presentation.components.atoms.Input
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.components.atoms.Screen
 import com.abulnes.trucker_app.presentation.components.molecules.AppTopBar
+import com.abulnes.trucker_app.presentation.theme.Spacing
 import com.abulnes.trucker_app.presentation.theme.TruckerAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,6 +73,7 @@ fun CreatePasswordScreen(
                         Text(text = stringResource(id = R.string.new_password))
                     },
                 )
+                Spacer(modifier = Modifier.height(Spacing.md))
                 Input(
                     value = "",
                     onValueChange = {},

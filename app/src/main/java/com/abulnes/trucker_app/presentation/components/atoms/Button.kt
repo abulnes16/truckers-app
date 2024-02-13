@@ -62,6 +62,7 @@ fun MainButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     type: ButtonTypes = ButtonTypes.PRIMARY,
+    enabled: Boolean = true,
     @StringRes text: Int? = null,
     buttonText: String? = null,
     textModifier: Modifier = Modifier,
@@ -74,7 +75,7 @@ fun MainButton(
 
     when (type) {
         ButtonTypes.PRIMARY -> {
-            Button(onClick = onClick, modifier = buttonModifier) {
+            Button(onClick = onClick, modifier = buttonModifier, enabled = enabled) {
                 ButtonContent(
                     text = text,
                     buttonText = buttonText,
@@ -88,6 +89,7 @@ fun MainButton(
             OutlinedButton(
                 onClick = onClick,
                 modifier = buttonModifier,
+                enabled = enabled,
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onBackground)
             ) {
                 ButtonContent(
@@ -102,6 +104,7 @@ fun MainButton(
         ButtonTypes.SECONDARY -> {
             FilledTonalButton(
                 onClick = onClick,
+                enabled = enabled,
                 modifier = buttonModifier,
                 colors = ButtonDefaults.filledTonalButtonColors(contentColor = MaterialTheme.colorScheme.primary)
             ) {
@@ -115,7 +118,7 @@ fun MainButton(
         }
 
         ButtonTypes.PRIMARY_TEXT -> {
-            TextButton(onClick = onClick, modifier = modifier) {
+            TextButton(onClick = onClick, modifier = modifier, enabled = enabled) {
                 ButtonContent(
                     text = text,
                     buttonText = buttonText,

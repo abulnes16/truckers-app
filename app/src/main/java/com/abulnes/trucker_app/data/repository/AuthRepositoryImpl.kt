@@ -31,7 +31,7 @@ class AuthRepositoryImpl @Inject constructor(private val firebaseAuth: FirebaseA
             )?.await()
             Result.success(true)
         } catch (e: Exception) {
-            Log.d(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
+            Log.e(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
             Result.failure(e)
         }
     }
@@ -42,12 +42,22 @@ class AuthRepositoryImpl @Inject constructor(private val firebaseAuth: FirebaseA
             val user = result.toUser()
             Result.success(user)
         } catch (e: Exception) {
-            Log.d(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
+            Log.e(AUTH_REPOSITORY_TAG, e.message ?: "Auth Error")
             Result.failure(e)
         }
     }
 
     override suspend fun signInWithProvider(provider: String) {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun recoverPassword(email: String): Result<Boolean> {
+        return try {
+            firebaseAuth.sendPasswordResetEmail(email).await()
+            Result.success(true)
+        }catch (e: Exception){
+            Log.e(AUTH_REPOSITORY_TAG, e.message ?: "Recover Password Error")
+            Result.failure(e)
+        }
     }
 }

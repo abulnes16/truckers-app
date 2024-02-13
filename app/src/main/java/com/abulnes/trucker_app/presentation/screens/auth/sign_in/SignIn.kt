@@ -39,6 +39,7 @@ import com.abulnes.trucker_app.presentation.components.atoms.Input
 import com.abulnes.trucker_app.presentation.components.atoms.Logo
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.components.atoms.Screen
+import com.abulnes.trucker_app.presentation.components.lifecycle.ObserveAsEvent
 import com.abulnes.trucker_app.presentation.components.molecules.SpacerText
 import com.abulnes.trucker_app.presentation.components.organisms.GoogleButton
 import com.abulnes.trucker_app.presentation.theme.Spacing
@@ -56,18 +57,16 @@ fun SignInScreen(
     val state = viewModel.state
     val context = LocalContext.current
 
-    LaunchedEffect(key1 = true) {
-        viewModel.uiEvent.collect { event ->
-            when (event) {
-                is UiEvent.ShowSnackBar -> {
-                    snackBarHostState.showSnackbar(event.message.asString(context))
-                }
-                is UiEvent.Success -> onSignIn()
-                else -> Unit
+    ObserveAsEvent(flow = viewModel.uiEvent) { event ->
+        when (event) {
+            is UiEvent.ShowSnackBar -> {
+                snackBarHostState.showSnackbar(event.message.asString(context))
             }
-
+            is UiEvent.Success -> onSignIn()
+            else -> Unit
         }
     }
+
 
 
     Screen(modifier = modifier, arrangement = Arrangement.SpaceAround, withScroll = true) {
