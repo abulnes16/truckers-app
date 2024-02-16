@@ -1,6 +1,5 @@
 package com.abulnes.trucker_app.utils
 
-import com.abulnes.trucker_app.presentation.screens.auth.sign_up.SignUpEvent
 
 sealed class UiEvent {
     object Success: UiEvent()

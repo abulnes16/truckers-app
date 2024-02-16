@@ -14,7 +14,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -24,13 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abulnes.trucker_app.R
-import com.abulnes.trucker_app.TruckerAppApplication
 import com.abulnes.trucker_app.presentation.components.atoms.ButtonTypes
 import com.abulnes.trucker_app.presentation.components.atoms.MainButton
 import com.abulnes.trucker_app.presentation.components.atoms.Screen
 import com.abulnes.trucker_app.presentation.components.molecules.SpacerText
 import com.abulnes.trucker_app.presentation.components.organisms.GoogleButton
-import com.abulnes.trucker_app.presentation.components.organisms.rememberGoogleAuthLauncher
 import com.abulnes.trucker_app.presentation.theme.TruckerAppTheme
 
 
