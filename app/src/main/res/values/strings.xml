@@ -55,6 +55,7 @@
     <string name="via_email">via Email:</string>
     <string name="accessibility_forgot_password">Recover your password</string>
     <string name="failed_sent_recovery_email">We couldn\'t sent your request, please try again</string>
+    <string name="email_sent">We sent you an email to reset your password, please check your inbox</string>
 
 
     <!--Create New Password-->

@@ -53,7 +53,7 @@ class ForgotPasswordViewModel @Inject constructor(
                 .recoverPassword(email = state.email)
                 .onSuccess {
                     state = state.copy(loading = false)
-                    _uiEvent.send(UiEvent.Success)
+                    _uiEvent.send(UiEvent.SuccessWithSnackBar(UiText.StringResource(R.string.email_sent)))
                 }
                 .onFailure {
                     state = state.copy(loading = false)

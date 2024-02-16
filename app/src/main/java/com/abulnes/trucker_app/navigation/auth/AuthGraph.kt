@@ -26,6 +26,7 @@ fun NavGraphBuilder.authGraph(
             WelcomeScreen(
                 onClickSignIn = { navController.navigateToSignIn() },
                 onClickSignUp = { navController.navigateToSignUp() },
+                onSuccessSignInWithGoogle = { navController.navigateToHome() }
             )
         }
         composable(SignIn.route) {
@@ -46,7 +47,7 @@ fun NavGraphBuilder.authGraph(
         composable(ForgotPassword.route) {
             ForgotPasswordScreen(
                 onGoBack = { navController.popBackStack() },
-                onCreatePassword = { navController.navigateToCreatePassword() },
+                onCreatePassword = { navController.popBackStack() },
                 snackBarHostState = snackBarHostState
             )
         }

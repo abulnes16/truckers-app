@@ -38,13 +38,17 @@ import com.abulnes.trucker_app.presentation.theme.TruckerAppTheme
 fun WelcomeScreen(
     onClickSignIn: () -> Unit,
     onClickSignUp: () -> Unit,
+    onSuccessSignInWithGoogle: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: WelcomeViewModel = hiltViewModel()
 ) {
 
 
     val context = LocalContext.current
-    LaunchedEffect(key1 = viewModel.state.errorMessage) {
+    LaunchedEffect(
+        key1 = viewModel.state.errorMessage,
+        key2 = viewModel.state.signInSuccessful
+    ) {
         viewModel.state.errorMessage?.let { error ->
             Toast.makeText(
                 context,
@@ -52,7 +56,14 @@ fun WelcomeScreen(
                 Toast.LENGTH_LONG
             ).show()
         }
+
+        if(viewModel.state.signInSuccessful){
+            onSuccessSignInWithGoogle()
+        }
+
     }
+
+
 
     Screen(modifier = modifier, arrangement = Arrangement.SpaceAround) {
         Column {
@@ -106,6 +117,6 @@ fun WelcomeScreen(
 @Composable
 fun WelcomeScreenPreview() {
     TruckerAppTheme {
-        WelcomeScreen(onClickSignIn = {}, onClickSignUp = {})
+        WelcomeScreen(onClickSignIn = {}, onClickSignUp = {}, onSuccessSignInWithGoogle = {})
     }
 }

@@ -146,7 +146,11 @@ fun SignInScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 GoogleButton(
                     modifier = Modifier.fillMaxWidth(0.35f),
-                    onHandleSignIn = {}
+                    onHandleSignIn = {
+                        if(it != null){
+                            onSignIn()
+                        }
+                    }
                 )
             }
 

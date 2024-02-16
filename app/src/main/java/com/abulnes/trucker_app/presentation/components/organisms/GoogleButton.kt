@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -36,46 +40,58 @@ fun GoogleButton(
     imageSize: Dp = 20.dp,
     text: Int? = null
 ) {
-
+   var isSignInLoading by remember {
+       mutableStateOf(false)
+   }
 
     val coroutineScope = rememberCoroutineScope()
     val launcher =
         rememberGoogleAuthLauncher(
             googleAuthUiClient = TruckerAppApplication.googleAuthUiClient,
-            resultHandler = onHandleSignIn
-        )
-
-
-    MainButton(
-        type = ButtonTypes.OUTLINE,
-        onClick = {
-            coroutineScope.launch {
-                val signInIntentSender = TruckerAppApplication.googleAuthUiClient.signIn()
-                launcher.launch(
-                    IntentSenderRequest.Builder(
-                        signInIntentSender ?: return@launch
-                    ).build()
-                )
+            resultHandler = { result ->
+                isSignInLoading = false
+                onHandleSignIn(result)
             }
-        },
-        modifier = modifier
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.google_logo),
-            contentDescription = stringResource(id = R.string.accessibility_google_logo),
-            modifier = Modifier
-                .width(imageSize)
-                .height(imageSize)
         )
-        if (text !== null) {
-            Spacer(modifier = Modifier.width(Spacing.xsm))
-            Text(
-                text = stringResource(id = text),
-                fontFamily = urbanistFontFamily,
-                fontWeight = FontWeight.Bold,
-                
+
+    if(isSignInLoading){
+        CircularProgressIndicator()
+    }else {
+        MainButton(
+            type = ButtonTypes.OUTLINE,
+            onClick = {
+                coroutineScope.launch {
+                    isSignInLoading = true
+                    val signInIntentSender = TruckerAppApplication.googleAuthUiClient.signIn()
+                    launcher.launch(
+                        IntentSenderRequest.Builder(
+                            signInIntentSender ?: return@launch
+                        ).build()
+                    )
+                }
+            },
+            modifier = modifier
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.google_logo),
+                contentDescription = stringResource(id = R.string.accessibility_google_logo),
+                modifier = Modifier
+                    .width(imageSize)
+                    .height(imageSize)
             )
+            if (text !== null) {
+                Spacer(modifier = Modifier.width(Spacing.xsm))
+                Text(
+                    text = stringResource(id = text),
+                    fontFamily = urbanistFontFamily,
+                    fontWeight = FontWeight.Bold,
+
+                    )
+            }
         }
     }
+
+
+
 }
 

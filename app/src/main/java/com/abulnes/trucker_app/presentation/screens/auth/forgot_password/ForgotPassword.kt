@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -64,7 +65,12 @@ fun ForgotPasswordScreen(
             is UiEvent.ShowSnackBar -> {
                 snackBarHostState.showSnackbar(event.message.asString(context))
             }
-            is UiEvent.Success -> onCreatePassword()
+
+            is UiEvent.SuccessWithSnackBar -> {
+                snackBarHostState.showSnackbar(event.message.asString(context))
+                onCreatePassword()
+            }
+
             else -> Unit
         }
     }
@@ -79,7 +85,7 @@ fun ForgotPasswordScreen(
         )
     }) { padding ->
         Screen(
-            modifier.padding(padding)
+            modifier.padding(padding),
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,11 +124,16 @@ fun ForgotPasswordScreen(
                     .padding(bottom = 16.dp),
                 verticalArrangement = Arrangement.Bottom
             ) {
-                MainButton(
-                    text = R.string.send,
-                    onClick = { viewModel.onEvent(ForgotPasswordEvent.OnRecoverPassword) },
-                    enabled = state.isFormValid
-                )
+                if (viewModel.state.loading) {
+                    CircularProgressIndicator()
+                } else {
+                    MainButton(
+                        text = R.string.send,
+                        onClick = { viewModel.onEvent(ForgotPasswordEvent.OnRecoverPassword) },
+                        enabled = state.isFormValid
+                    )
+                }
+
             }
         }
     }
