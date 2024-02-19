@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 
 plugins {
@@ -38,14 +38,17 @@ android {
         create("dev"){
             dimension = "truckers"
             applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "Truckers Hub Dev")
 
         }
         create("qa"){
             dimension = "truckers"
             applicationIdSuffix = ".qa"
+            resValue("string", "app_name", "Truckers Hub QA")
         }
         create("production"){
             dimension = "truckers"
+            resValue("string", "app_name", "Truckers Hub")
         }
     }
 

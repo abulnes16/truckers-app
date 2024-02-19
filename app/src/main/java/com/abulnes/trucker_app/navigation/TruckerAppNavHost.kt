@@ -13,7 +13,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.abulnes.trucker_app.navigation.auth.AUTH_ROUTE
 import com.abulnes.trucker_app.navigation.auth.authGraph
+import com.abulnes.trucker_app.navigation.home.HOME_ROUTE
 import com.abulnes.trucker_app.navigation.home.homeGraph
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,10 +28,14 @@ fun TruckerAppNavHost(
     val snackBarState = remember {
         SnackbarHostState()
     }
+
+
+    val user = Firebase.auth.currentUser
+
     Scaffold(snackbarHost = { SnackbarHost(snackBarState) }) {
         NavHost(
             navController = navController,
-            startDestination = AUTH_ROUTE,
+            startDestination = if(user !== null) HOME_ROUTE else AUTH_ROUTE,
             modifier = modifier.padding(it)
         ) {
             authGraph(navController, snackBarState)
